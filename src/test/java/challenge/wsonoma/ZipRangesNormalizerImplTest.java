@@ -2,7 +2,7 @@ package challenge.wsonoma;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import challenge.wsonoma.rangenorm.ZipRangesNormalizerImpl;
+import challenge.wsonoma.ranges.normalizer.ZipRangesNormalizerImpl;
 import org.junit.Before;
 import org.junit.Test;
 

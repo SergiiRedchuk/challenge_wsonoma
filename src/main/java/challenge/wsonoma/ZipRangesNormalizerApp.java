@@ -1,7 +1,7 @@
 package challenge.wsonoma;
 
-import challenge.wsonoma.rangenorm.ZipRangesNormalizer;
-import challenge.wsonoma.rangenorm.ZipRangesNormalizerImpl;
+import challenge.wsonoma.ranges.normalizer.ZipRangesNormalizer;
+import challenge.wsonoma.ranges.normalizer.ZipRangesNormalizerImpl;
 import java.util.Arrays;
 
 /**

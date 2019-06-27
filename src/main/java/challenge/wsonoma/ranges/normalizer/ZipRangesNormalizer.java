@@ -1,4 +1,4 @@
-package challenge.wsonoma.rangenorm;
+package challenge.wsonoma.ranges.normalizer;
 
 public interface ZipRangesNormalizer {
 

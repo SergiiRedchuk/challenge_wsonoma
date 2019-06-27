@@ -3,7 +3,7 @@ package challenge.wsonoma;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import challenge.wsonoma.rangenorm.SimpleZipRangeValidator;
+import challenge.wsonoma.ranges.validator.SimpleZipRangeValidator;
 import org.junit.Before;
 import org.junit.Test;
 

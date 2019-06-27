@@ -2,9 +2,12 @@ package challenge.wsonoma;
 
 import static org.junit.Assert.assertArrayEquals;
 
+import challenge.wsonoma.rangenorm.ZipRangesNormalizer;
+import challenge.wsonoma.rangenorm.ZipRangesNormalizerImpl;
+import org.junit.Before;
 import org.junit.Test;
 
-public class ZipRangesNormalizerTest {
+public class ZipRangesNormalizerImplTest {
 
   private static final Integer[][] IN_RANGES_1 = new Integer[][]{
       {94133, 94133}, {94200, 94299}, {94226, 94399}, {95226, 95399}
@@ -40,28 +43,25 @@ public class ZipRangesNormalizerTest {
       {95226, 95399}
   };
 
+  private ZipRangesNormalizer rangesNormalizer;
+
+  @Before
+  public void setUp() {
+    rangesNormalizer = new ZipRangesNormalizerImpl();
+  }
+
   @Test
   public void testNonOverlappingRangesStay() {
-    assertArrayEquals(OUT_RANGES_1, ZipRangesNormalizer.normalizeValidRanges(IN_RANGES_1));
-    assertArrayEquals(OUT_RANGES_1, ZipRangesNormalizer.normalizeRanges(IN_RANGES_1));
+    assertArrayEquals(OUT_RANGES_1, rangesNormalizer.normalizeRanges(IN_RANGES_1));
   }
 
   @Test
   public void testAdjacentAndOverlappingRangesMerge() {
-    assertArrayEquals(OUT_RANGES_2, ZipRangesNormalizer.normalizeValidRanges(IN_RANGES_2));
-    assertArrayEquals(OUT_RANGES_2, ZipRangesNormalizer.normalizeRanges(IN_RANGES_2));
+    assertArrayEquals(OUT_RANGES_2, rangesNormalizer.normalizeRanges(IN_RANGES_2));
   }
 
   @Test
   public void testIncludedRangesAreSkipped() {
-    assertArrayEquals(OUT_RANGES_3, ZipRangesNormalizer.normalizeValidRanges(IN_RANGES_3));
-    assertArrayEquals(OUT_RANGES_3, ZipRangesNormalizer.normalizeRanges(IN_RANGES_3));
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testInvalidRangeCausesException() {
-    ZipRangesNormalizer.normalizeRanges(new Integer[][]{
-        {90100, 94134}, {94200, 93500}
-    });
+    assertArrayEquals(OUT_RANGES_3, rangesNormalizer.normalizeRanges(IN_RANGES_3));
   }
 }

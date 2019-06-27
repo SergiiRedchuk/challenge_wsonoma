@@ -9,12 +9,15 @@ So I went with pre-sorting the input range using the efficient Tim Sort with fol
 ## Build
 
 ```
-gradlew shadowJar
+./gradlew shadowJar
 ```
 
 ## Usage
 
+Prepare a CSV file with zip ranges. There is one in the project: src/test/resources/zip_ranges.csv
+
+Run:
 ```
-java -jar build/libs/zip_ranges_normalizer-1.0-dist.jar zip_ranges.csv
-java -jar build/libs/zip_ranges_normalizer-1.0-dist.jar zip_ranges.csv > normalized_ranges.csv 2> invalid_ranges.txt
+java -jar build/libs/zip_ranges_normalizer-1.0-dist.jar src/test/resources/zip_ranges.csv
+java -jar build/libs/zip_ranges_normalizer-1.0-dist.jar src/test/resources/zip_ranges.csv > normalized_ranges.csv 2> invalid_ranges.txt
 ```

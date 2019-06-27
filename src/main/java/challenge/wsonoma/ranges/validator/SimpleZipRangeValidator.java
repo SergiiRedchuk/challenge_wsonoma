@@ -8,7 +8,8 @@ public class SimpleZipRangeValidator implements ZipRangeValidator {
 
   @Override
   public boolean isRangeValid(String[] range) {
-    return SIMPLE_ZIP_PATTERN.matcher(range[0]).matches()
+    return range.length == 2
+        && SIMPLE_ZIP_PATTERN.matcher(range[0]).matches()
         && SIMPLE_ZIP_PATTERN.matcher(range[1]).matches()
         && range[0].compareTo(range[1]) < 1;
   }

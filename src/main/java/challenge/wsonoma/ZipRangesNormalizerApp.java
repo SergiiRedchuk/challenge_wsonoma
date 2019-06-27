@@ -4,6 +4,7 @@ import challenge.wsonoma.ranges.load.CsvFileZipRangesLoader;
 import challenge.wsonoma.ranges.load.ZipRangesLoader;
 import challenge.wsonoma.ranges.normalizer.ZipRangesNormalizer;
 import challenge.wsonoma.ranges.normalizer.ZipRangesNormalizerImpl;
+import challenge.wsonoma.ranges.validator.SimpleZipRangeValidator;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -24,7 +25,7 @@ public class ZipRangesNormalizerApp {
 
     // loadRanges CSV file
     ZipRangesLoader loader = new CsvFileZipRangesLoader(args[0]);
-    Integer[][] zipRanges = loader.loadRanges();
+    Integer[][] zipRanges = loader.loadRanges(new SimpleZipRangeValidator());
 
     // normalize zipRanges
     ZipRangesNormalizer rangesNormalizer = new ZipRangesNormalizerImpl();

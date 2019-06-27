@@ -1,6 +1,5 @@
 package challenge.wsonoma.ranges.load;
 
-import challenge.wsonoma.ranges.validator.SimpleZipRangeValidator;
 import challenge.wsonoma.ranges.validator.ZipRangeValidator;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +14,7 @@ public class CsvFileZipRangesLoader implements ZipRangesLoader {
   }
 
   @Override
-  public Integer[][] loadRanges() throws IOException {
-    ZipRangeValidator rangeValidator = new SimpleZipRangeValidator();
+  public Integer[][] loadRanges(ZipRangeValidator rangeValidator) throws IOException {
     List<Integer[]> zipRanges = new ArrayList<>();
     try (FileZipRangesIterator it = new FileZipRangesIterator(fileLocation)) {
       while (it.hasNext()) {

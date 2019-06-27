@@ -14,7 +14,7 @@ public class ZipRangesNormalizerImpl implements ZipRangesNormalizer {
    * Use only when sure if input is valid.
    *
    * @param zipRanges array
-   * @return ranges
+   * @return normalized ranges
    */
   public Integer[][] normalizeRanges(Integer[][] zipRanges) {
     Arrays.sort(zipRanges, RANGES_COMPARATOR);

@@ -1,4 +1,4 @@
-package challenge.wsonoma.ranges.reader;
+package challenge.wsonoma.ranges.load;
 
 import java.io.File;
 import java.io.IOException;

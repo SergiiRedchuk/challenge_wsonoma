@@ -1,14 +1,11 @@
 package challenge.wsonoma;
 
+import challenge.wsonoma.ranges.load.CsvFileZipRangesLoader;
+import challenge.wsonoma.ranges.load.ZipRangesLoader;
 import challenge.wsonoma.ranges.normalizer.ZipRangesNormalizer;
 import challenge.wsonoma.ranges.normalizer.ZipRangesNormalizerImpl;
-import challenge.wsonoma.ranges.reader.FileZipRangesIterator;
-import challenge.wsonoma.ranges.validator.SimpleZipRangeValidator;
-import challenge.wsonoma.ranges.validator.ZipRangeValidator;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Given a collection of 5-digit ZIP code ranges (each range includes both their upper and lower
@@ -25,26 +22,13 @@ public class ZipRangesNormalizerApp {
       System.exit(1);
     }
 
-    // read CSV file into zipRanges
-    ZipRangeValidator rangeValidator = new SimpleZipRangeValidator();
-    List<Integer[]> zipRanges = new ArrayList<>();
-    try (FileZipRangesIterator it = new FileZipRangesIterator(args[0])) {
-      while (it.hasNext()) {
-        String[] range = it.next();
-        if (rangeValidator.isRangeValid(range)) {
-          zipRanges.add(new Integer[]{Integer.valueOf(range[0]), Integer.valueOf(range[1])});
-        } else {
-          System.err.printf("Skipping invalid Zip Code Range: [%s, %s]%n",
-              range.length > 0 ? range[0] : "",
-              range.length > 1 ? range[1] : "");
-        }
-      }
-    }
+    // loadRanges CSV file
+    ZipRangesLoader loader = new CsvFileZipRangesLoader(args[0]);
+    Integer[][] zipRanges = loader.loadRanges();
 
     // normalize zipRanges
     ZipRangesNormalizer rangesNormalizer = new ZipRangesNormalizerImpl();
-    Integer[][] normalizedZipRanges = rangesNormalizer
-        .normalizeRanges(zipRanges.toArray(new Integer[][]{}));
+    Integer[][] normalizedZipRanges = rangesNormalizer.normalizeRanges(zipRanges);
 
     // print normalized zipRanges to stdout
     Arrays.stream(normalizedZipRanges)
